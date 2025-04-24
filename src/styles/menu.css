@@ -1,0 +1,26 @@
+.menu-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .menu-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .menu-item:hover {
+    background-color: #f0f0f0;
+  }
+  
