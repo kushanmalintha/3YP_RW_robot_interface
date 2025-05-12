@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
+import '../pages/styles/menuItemForm.css';
 
 const AddMenuItemForm = () => {
   const [formData, setFormData] = useState({
     category: '',
     name: '',
-    Ingredients: '',
+    Includings: '',
+    price: '',
     imageUrl: ''
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -17,20 +22,29 @@ const AddMenuItemForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!restaurantId) {
+      alert('Restaurant ID not found.');
+      return;
+    }
+
     try {
-      await api.post('/api/restaurant/menu', { ...formData, restaurantId });
+      await api.post(`/api/restaurant/${restaurantId}/add-menu`, { ...formData, restaurantId });
+
       alert('Menu item added!');
-      // clear the form after submission
       setFormData({
         category: '',
         name: '',
-        Ingredients: '',
+        Includings: '',
+        price: '',
         imageUrl: ''
       });
+      navigate(0); // Reload the page
     } catch (error) {
       console.error('Error submitting menu item:', error);
+      alert('Error adding menu item. Please try again.');
     }
-  };  
+  };
 
   return (
     <form className="menu-item-form" onSubmit={handleSubmit}>
@@ -43,8 +57,20 @@ const AddMenuItemForm = () => {
         <input type="text" name="name" value={formData.name} onChange={handleChange} required />
       </label>
       <label>
-        Ingredients:
-        <textarea name="Ingredients" value={formData.Ingredients} onChange={handleChange} required />
+        Includings:
+        <textarea name="Includings" value={formData.Includings} onChange={handleChange} required />
+      </label>
+      <label>
+        Price:
+        <input
+          type="number"
+          name="price"
+          value={formData.price}
+          onChange={handleChange}
+          required
+          min="0"
+          step="1"
+        />
       </label>
       <label>
         Image URL:

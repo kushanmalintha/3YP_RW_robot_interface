@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 
 const RestaurantLoginForm = () => {
   const [email, setEmail] = useState('');
@@ -19,11 +20,13 @@ const RestaurantLoginForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('restaurantId', data.restaurantId);
-        navigate('/dashboard'); // Adjust as needed
-        // console.log('Login successful:', data);
-        // const savedId = localStorage.getItem('restaurantId');
-        // console.log('Saved restaurantId in localStorage:', savedId);
+        const decoded = jwtDecode(data.restaurantToken);
+        const restaurantId = decoded.restaurantId;
+
+        localStorage.setItem('restaurantId', restaurantId);
+        localStorage.setItem('restaurantToken', data.restaurantToken);
+
+        navigate('/dashboard');
       } else {
         alert(data.message || 'Login failed');
       }

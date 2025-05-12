@@ -1,0 +1,58 @@
+.menu-list {
+    overflow-y: auto;
+    max-height: 80vh;
+    padding: 1rem;
+  }
+  
+  .menu-category {
+    margin-bottom: 1.5rem;
+  }
+  
+  .menu-category h3 {
+    background-color: #8e6ce4;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-item:hover {
+    background-color: #e3d8ff;
+  }
+  
+  .menu-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  .menu-item-info {
+    flex: 1;
+  }
+  
+  .menu-item-info strong {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .menu-item-info p {
+    margin: 0.5rem 0;
+  }
+  
+  .menu-item-info p strong {
+    color: #555;
+  }
+  

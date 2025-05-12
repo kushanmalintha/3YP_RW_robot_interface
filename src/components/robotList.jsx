@@ -6,7 +6,7 @@ const RobotList = ({ robots, onAdd }) => {
       <h2>Robots</h2>
       <ul className="list">
         {robots.map((robot, index) => (
-          <li key={index}>{robot.robotId}</li>
+          <li key={index}>{robot.name}</li>
         ))}
       </ul>
       <button className="add-btn" onClick={onAdd}>+ Add Robot</button>

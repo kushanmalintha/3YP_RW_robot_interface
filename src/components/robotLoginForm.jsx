@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const RobotLoginForm = () => {
   const [robotId, setRobotId] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -11,7 +12,7 @@ const RobotLoginForm = () => {
       const res = await fetch('http://localhost:3000/api/robot/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ robotId }),
+        body: JSON.stringify({ robotId, password }),
       });
 
       const data = await res.json();
@@ -36,14 +37,14 @@ const RobotLoginForm = () => {
           onChange={(e) => setRobotId(e.target.value)}
           required
         />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
         <button type="submit">Login</button>
-
-        <div className="form-footer">
-          Don't have an account?{' '}
-          <Link to="/robot-signup" className="form-link">
-            Sign up here
-          </Link>
-        </div>
       </form>
     </div>
   );

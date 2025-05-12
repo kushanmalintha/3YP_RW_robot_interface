@@ -12,15 +12,19 @@ const RestaurantMenu = () => {
     const fetchMenu = async () => {
       try {
         const res = await api.get(`/api/restaurant/${restaurantId}/menu`);
-        console.log('Menu data:', res.data.menuItems);
-        const grouped = res.data.menuItems.reduce((acc, item) => {
+        console.log('Menu data:', res.data.menu);
+        const grouped = res.data.menu.reduce((acc, item) => {
           if (!acc[item.category]) acc[item.category] = [];
           acc[item.category].push({
             name: item.name,
-            includes: item.Ingredients.split(',').map(i => i.trim()),
+            includes: typeof item.Includings === 'string'
+              ? item.Includings.split(',').map(i => i.trim())
+              : [],
             image: item.imageUrl,
-          });
-          return acc;
+            price: item.price,
+            menuNumber: item.menuNumber,
+          });          
+          return acc;          
         }, {});
         setMenuData(grouped);
       } catch (err) {

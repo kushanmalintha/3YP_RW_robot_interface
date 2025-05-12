@@ -51,3 +51,27 @@
   padding-left: 1.25rem;
   font-size: 0.95rem;
 }
+
+.menu-item-card {
+  position: relative; /* Required for absolute children like the badge */
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  overflow: visible; /* Prevent clipping of badge */
+}
+
+.menu-number-badge {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 0.4rem 0.75rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 1;
+}
