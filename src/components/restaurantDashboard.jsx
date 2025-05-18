@@ -1,3 +1,4 @@
+// No major changes, just pass restaurantId to RobotList
 import React, { useEffect, useState } from 'react';
 import EmployeeList from './employeeList';
 import RobotList from './robotList';
@@ -25,19 +26,15 @@ const RestaurantDashboard = () => {
     fetchData();
   }, [restaurantId]);
 
-  const handleAddEmployee = () => navigate('/employee-signup');
-  const handleAddRobot = () => navigate('/robot-signup');
-  const handleAddMenuItem = () => navigate('/add-menu-item');
-
   return (
     <div className="dashboard-container">
       <div className="dashboard-header">
         <h1>Restaurant Dashboard</h1>
-        <button className="add-menu-btn" onClick={handleAddMenuItem}>+ Add Menu Item</button>
+        <button className="add-menu-btn" onClick={() => navigate('/add-menu-item')}>+ Add Menu Item</button>
       </div>
       <div className="dashboard-grid">
-        <EmployeeList employees={employees} onAdd={handleAddEmployee} />
-        <RobotList robots={robots} onAdd={handleAddRobot} />
+        <EmployeeList employees={employees} onAdd={() => navigate('/employee-signup')} />
+        <RobotList robots={robots} onAdd={() => navigate('/robot-signup')} restaurantId={restaurantId} />
       </div>
     </div>
   );

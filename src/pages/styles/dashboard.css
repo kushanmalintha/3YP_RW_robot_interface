@@ -84,3 +84,44 @@
     background-color: #8e6ce4cc;
   }
   
+  .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .popup-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    min-width: 300px;
+    max-width: 90%;
+    text-align: center;
+  }
+  
+  .popup-card h3 {
+    margin-bottom: 1rem;
+  }
+  
+  .popup-card p {
+    margin: 0.5rem 0;
+  }
+  
+  .popup-card button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #8e6cef;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

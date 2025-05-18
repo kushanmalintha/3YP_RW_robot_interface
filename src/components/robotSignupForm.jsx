@@ -9,35 +9,40 @@ const RobotSignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const restaurantId = localStorage.getItem('restaurantId');
-
+  
     if (!robotName || !restaurantId) {
-      setMessage({ error: 'Robot name and restaurant ID are required.', success: '' });
+      alert('Robot name and restaurant ID are required.');
       return;
     }
-
+  
     try {
       const res = await fetch('http://localhost:3000/api/robot/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ robotName, restaurantId }),
       });
-
+  
       const data = await res.json();
-      if (res.ok) {
-        setMessage({ success: 'Robot registered successfully!', error: '' });
+  
+      if (res.status === 409) {
+        // Alert for duplicate robot name in the same restaurant
+        alert('A robot with this name already exists for this restaurant. Please choose a different name.');
+      } else if (res.ok) {
+        alert(`Robot registered successfully!`);
         setRobotName('');
         setTimeout(() => {
           navigate('/dashboard');
         }, 2000);
       } else {
-        setMessage({ error: data.message || 'Failed to register robot.', success: '' });
+        alert(data.message || 'Failed to register robot.');
       }
     } catch (err) {
-      setMessage({ error: 'Error occurred during signup.', success: '' });
+      alert('Error occurred during signup.');
+      console.error(err);
     }
-  };
+  };  
 
   return (
     <div className="signup-page">
