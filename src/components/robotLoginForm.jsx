@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/api';
 
 const RobotLoginForm = () => {
   const [robotId, setRobotId] = useState('');
@@ -9,20 +10,20 @@ const RobotLoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch('http://localhost:3000/api/robot/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ robotId, password }),
-      });
-
-      const data = await res.json();
-      if (res.ok) {
+      const res = await api.post('/api/robot/login', { robotId, password });
+      const data = res.data;
+      if (res.status === 200) {
+        localStorage.setItem('restaurantId', data.restaurantId); // Store restaurantId in localStorage
         navigate('/restaurant-menu');
       } else {
         alert(data.message || 'Login failed');
       }
     } catch (err) {
-      alert('An error occurred');
+      if (err.response && err.response.data && err.response.data.message) {
+        alert(err.response.data.message);
+      } else {
+        alert('An error occurred');
+      }
     }
   };
 

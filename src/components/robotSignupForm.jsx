@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/api';
 
 const RobotSignupForm = () => {
   const [robotName, setRobotName] = useState('');
@@ -18,29 +19,25 @@ const RobotSignupForm = () => {
     }
   
     try {
-      const res = await fetch('http://localhost:3000/api/robot/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ robotName, restaurantId }),
-      });
-  
-      const data = await res.json();
-  
+      const res = await api.post('/api/robot/signup', { robotName, restaurantId });
       if (res.status === 409) {
-        // Alert for duplicate robot name in the same restaurant
         alert('A robot with this name already exists for this restaurant. Please choose a different name.');
-      } else if (res.ok) {
+      } else if (res.status === 200 || res.status === 201 || res.data) {
         alert(`Robot registered successfully!`);
         setRobotName('');
         setTimeout(() => {
           navigate('/dashboard');
         }, 2000);
       } else {
-        alert(data.message || 'Failed to register robot.');
+        alert(res.data?.message || 'Failed to register robot.');
       }
     } catch (err) {
-      alert('Error occurred during signup.');
-      console.error(err);
+      if (err.response && err.response.status === 409) {
+        alert('A robot with this name already exists for this restaurant. Please choose a different name.');
+      } else {
+        alert('Error occurred during signup.');
+        console.error(err);
+      }
     }
   };  
 

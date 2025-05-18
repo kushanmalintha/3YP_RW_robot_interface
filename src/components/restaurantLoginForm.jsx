@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
+import api from '../api/api';
 
 const RestaurantLoginForm = () => {
   const [email, setEmail] = useState('');
@@ -11,28 +11,23 @@ const RestaurantLoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/api/restaurant/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        const decoded = jwtDecode(data.restaurantToken);
-        const restaurantId = decoded.restaurantId;
-
-        localStorage.setItem('restaurantId', restaurantId);
-        localStorage.setItem('restaurantToken', data.restaurantToken);
+      const response = await api.post('/api/restaurant/login', { email, password });
+      const data = response.data;
+      if (response.status === 200) {
+        localStorage.setItem('restaurantId', data.uid); // Store uid as restaurantId
+        localStorage.setItem('restaurantToken', data.token); // Store token
 
         navigate('/dashboard');
       } else {
         alert(data.message || 'Login failed');
       }
     } catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        alert(error.response.data.message);
+      } else {
+        alert('An error occurred during login');
+      }
       console.error('Error:', error);
-      alert('An error occurred during login');
     }
   };
 
