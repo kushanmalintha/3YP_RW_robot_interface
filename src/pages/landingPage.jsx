@@ -2,6 +2,7 @@ import React from 'react';
 import RoleCard from '../components/roleCard';
 import adminImg from '../assets/restaurant.svg';
 import robotImg from '../assets/robot.svg';
+import employeeImg from '../assets/employee.svg';
 import './styles/LandingPage.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -26,6 +27,12 @@ const LandingPage = () => {
           description="Serve customers with menu and ordering"
           onClick={() => navigate('/robot-login')}
         />
+      <RoleCard
+        image={employeeImg}
+        title="Employee Login"
+        description="Assist restaurant operations and customer service"
+        onClick={() => window.location.href = import.meta.env.VITE_EMPLOYEE_APP_URL}
+      />
       </div>
     </div>
   );
