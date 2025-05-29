@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
+import webSocketManager from '../utils/webSocketManager';
 
 const RobotLoginForm = () => {
   const [robotId, setRobotId] = useState('');
@@ -12,8 +13,18 @@ const RobotLoginForm = () => {
     try {
       const res = await api.post('/api/robot/login', { robotId, password });
       const data = res.data;
+      console.log('Login response dataaaaaaaa:', data);
       if (res.status === 200) {
         localStorage.setItem('restaurantId', data.restaurantId); // Store restaurantId in localStorage
+
+        // Setup WebSocket connection after successful login
+        webSocketManager.connect('ws://localhost:3000', data.robotId, (message) => {
+          console.log('WebSocket message:', message);
+          if (message.type === 'auth') {
+            localStorage.setItem('robotAuthToken', message.idToken);
+          }
+        });
+
         navigate('/restaurant-menu');
       } else {
         alert(data.message || 'Login failed');
