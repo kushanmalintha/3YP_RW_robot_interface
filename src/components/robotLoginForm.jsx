@@ -13,7 +13,7 @@ const RobotLoginForm = () => {
     try {
       const res = await api.post('/api/robot/login', { robotId, password });
       const data = res.data;
-      console.log('Login response dataaaaaaaa:', data);
+      console.log('Login response data:', data);
       if (res.status === 200) {
         localStorage.setItem('restaurantId', data.restaurantId); // Store restaurantId in localStorage
 
