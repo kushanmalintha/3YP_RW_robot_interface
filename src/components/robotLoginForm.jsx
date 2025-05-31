@@ -46,7 +46,7 @@ const RobotLoginForm = () => {
         webSocketManager.clearMqttFlag();
         
         // Setup WebSocket connection after successful login
-        webSocketManager.connect('ws://localhost:3000', data.robotId, (message) => {
+        webSocketManager.connect('ws://3.27.157.127:3000', data.robotId, (message) => {
           console.log('WebSocket message in login form:', message);
           
           // Update WebSocket status
