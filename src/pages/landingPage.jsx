@@ -3,7 +3,7 @@ import RoleCard from '../components/roleCard';
 import adminImg from '../assets/restaurant.svg';
 import robotImg from '../assets/robot.svg';
 import employeeImg from '../assets/employee.svg';
-import './styles/LandingPage.css';
+import './styles/landingPage.css';
 import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
