@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/api';
 import webSocketManager from '../utils/webSocketManager';
+import { WS_BASE_URL } from '../config';
 
 const RobotLoginForm = () => {
   const [robotId, setRobotId] = useState('');
@@ -46,7 +47,7 @@ const RobotLoginForm = () => {
         webSocketManager.clearMqttFlag();
         
         // Setup WebSocket connection after successful login
-        webSocketManager.connect('ws://3.27.157.127:3000', data.robotId, (message) => {
+        webSocketManager.connect(WS_BASE_URL, data.robotId, (message) => {
           console.log('WebSocket message in login form:', message);
           
           // Update WebSocket status
