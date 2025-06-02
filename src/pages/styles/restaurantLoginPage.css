@@ -1,62 +1,150 @@
-.login-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f6f6f6;
-  }
-  
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: url('../../assets/rw.jpg') center center/cover no-repeat;
+}
+
+/* Login Container (glassmorphism) */
+.login-form {
+  position: relative;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border-radius: 18px;
+  box-shadow: 0px 8px 32px 0px rgba(31, 38, 135, 0.25);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  min-width: 500px;
+  width: 100%;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  transition: 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.login-form:hover {
+  box-shadow: 0px 12px 32px 0px rgba(31, 38, 135, 0.35);
+}
+
+/* Title Styling */
+.login-form h2, .login-form-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 28px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #000000;
+}
+
+/* Input Fields */
+.login-form input {
+  width: 100%;
+  padding: 14px 18px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  background: rgba(255,255,255,0.7);
+  color: #2d2351;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(106,90,205,0.08);
+  transition: 0.3s;
+}
+
+.login-form input:focus {
+  border: 2px solid #8f5de7;
+  box-shadow: 0px 0px 8px 2px #8f5de7aa;
+}
+
+/* Login Button */
+.login-form button, .login-button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(90deg, #8f5de7 0%, #6a5acd 100%);
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 24px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px #6a5acd44;
+  transition: 0.3s;
+}
+
+.login-form button:hover, .login-button:hover {
+  background: linear-gradient(90deg, #6a5acd 0%, #8f5de7 100%);
+  box-shadow: 0 4px 16px #6a5acd66;
+}
+
+/* Other elements (forgot, signup, etc.) */
+.forgot-password-link, .signup-prompt a, .login-form .form-link {
+  color: #fff;
+  text-shadow: 0 1px 4px #6a5acd88;
+  font-weight: 500;
+}
+
+.forgot-password-link:hover, .signup-prompt a:hover, .login-form .form-link:hover {
+  color: #ffe082;
+  text-decoration: underline;
+}
+
+.signup-prompt, .login-form .form-footer {
+  color: #fff;
+  margin-top: 18px;
+  font-size: 15px;
+  text-shadow: 0 1px 4px #6a5acd88;
+  text-align: center;
+}
+
+/* Success & Error Messages */
+.popup {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  background: rgba(255,255,255,0.7);
+  color: #2d2351;
+  border: 1px solid #c3e6cb;
+}
+.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
   .login-form {
-    background: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    display: flex;
-    flex-direction: column;
+      padding: 1.2rem;
+      max-width: 95vw;
   }
-  
-  .login-form h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    color: #333;
+  .login-form h2, .login-form-title {
+      font-size: 1.3rem;
   }
-  
-  .login-form input {
-    margin-bottom: 1rem;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .login-form button {
-    padding: 10px;
-    background-color: #8e6cef;
-    color: white;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .login-form button:hover {
-    background-color: #7a5ed1;
-  }
-  
-  .login-form .form-footer {
-    margin-top: 1rem;
-    text-align: center;
-    font-size: 0.95rem;
-    color: #666;
-  }
-  
-  .login-form .form-link {
-    color: #8e6cef;
-    cursor: pointer;
-    font-weight: 500;
-    text-decoration: underline;
-  }
-  
+}

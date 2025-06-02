@@ -38,7 +38,7 @@ const RestaurantSignupForm = () => {
 
   return (
     <form className="signup-form" onSubmit={handleSubmit}>
-      <h2>Restaurant Admin Signup</h2>
+      <h2>Restaurant Signup</h2>
       <input name="name" placeholder="Restaurant Name" value={formData.name} onChange={handleChange} required />
       <input name="email" placeholder="Email" type="email" value={formData.email} onChange={handleChange} required />
       <input name="password" placeholder="Password" type="password" value={formData.password} onChange={handleChange} required />

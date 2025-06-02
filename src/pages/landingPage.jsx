@@ -11,9 +11,10 @@ const LandingPage = () => {
 
   return (
     <div className="landing-container">
-      <h1 className="landing-title">Welcome to Smart Restaurant System</h1>
-      <p className="landing-subtitle">Choose how you'd like to continue</p>
-
+      <div className="blur-box">
+        <h1 className="landing-title">Welcome to Smart Restaurant System</h1>
+        <p className="landing-subtitle">Choose how you'd like to continue</p>
+      </div>
       <div className="role-selection">
         <RoleCard
           image={adminImg}
@@ -22,17 +23,17 @@ const LandingPage = () => {
           onClick={() => navigate('/restaurant-login')}
         />
         <RoleCard
+          image={employeeImg}
+          title="Employee Login"
+          description="Assist restaurant operations and customer service"
+          onClick={() => window.location.href = import.meta.env.VITE_EMPLOYEE_APP_URL}
+        />
+        <RoleCard
           image={robotImg}
           title="Robot Login"
           description="Serve customers with menu and ordering"
           onClick={() => navigate('/robot-login')}
         />
-      <RoleCard
-        image={employeeImg}
-        title="Employee Login"
-        description="Assist restaurant operations and customer service"
-        onClick={() => window.location.href = import.meta.env.VITE_EMPLOYEE_APP_URL}
-      />
       </div>
     </div>
   );

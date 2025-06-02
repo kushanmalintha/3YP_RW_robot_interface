@@ -127,17 +127,17 @@ const RobotLoginForm = () => {
         </button>
         
         {/* Status indicators for debugging */}
-        <div style={{ marginTop: '20px', fontSize: '12px', color: '#666' }}>
+        {/* <div style={{ marginTop: '20px', fontSize: '12px', color: '#666' }}>
           <div>WebSocket Status: <span style={{ fontWeight: 'bold' }}>{websocketStatus}</span></div>
           {mqttMessageReceived && (
             <div style={{ color: 'green' }}>
               ✓ MQTT Authentication Message Received
             </div>
           )}
-        </div>
+        </div> */}
         
         {/* Debug button - remove in production */}
-        {process.env.NODE_ENV === 'development' && (
+        {/* {process.env.NODE_ENV === 'development' && (
           <button 
             type="button" 
             onClick={getWebSocketData}
@@ -145,7 +145,7 @@ const RobotLoginForm = () => {
           >
             Debug: Log WebSocket Data
           </button>
-        )}
+        )} */}
       </form>
     </div>
   );

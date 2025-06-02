@@ -1,16 +1,28 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 .landing-container {
     text-align: center;
     padding: 3rem 1rem;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   
   .landing-title {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px #000000;
   }
   
   .landing-subtitle {
-    color: #666;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 28px;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 8px #000000;
     margin-bottom: 2rem;
   }
   
@@ -20,4 +32,13 @@
     gap: 2rem;
     flex-wrap: wrap;
   }
-  
+
+  .blur-box {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    padding: 2rem 3rem;
+    display: inline-block;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+  }
