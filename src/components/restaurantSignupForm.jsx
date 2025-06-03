@@ -37,6 +37,7 @@ const RestaurantSignupForm = () => {
   };
 
   return (
+    <div className="signup-page">
     <form className="signup-form" onSubmit={handleSubmit}>
       <h2>Restaurant Signup</h2>
       <input name="name" placeholder="Restaurant Name" value={formData.name} onChange={handleChange} required />
@@ -52,6 +53,7 @@ const RestaurantSignupForm = () => {
       {status.error && <p className="error">{status.error}</p>}
       {status.success && <p className="success">{status.success}</p>}
     </form>
+    </div>
   );
 };
 

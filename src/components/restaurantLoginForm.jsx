@@ -32,6 +32,7 @@ const RestaurantLoginForm = () => {
   };
 
   return (
+    <div className="login-page">
     <form className="login-form" onSubmit={handleLogin}>
       <h2>Restaurant Login</h2>
       <input
@@ -56,6 +57,7 @@ const RestaurantLoginForm = () => {
         </span>
       </p>
     </form>
+    </div>
   );
 };
 
