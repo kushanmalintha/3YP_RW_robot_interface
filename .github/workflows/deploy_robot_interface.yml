@@ -1,0 +1,29 @@
+name: Deploy Robot Interface
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup SSH key
+      run: |
+        echo "${{ secrets.GITHUB_TOKEN }}" > key.pem
+        chmod 600 key.pem
+
+    - name: Rsync code to EC2
+      run: |
+        rsync -avz --exclude 'node_modules' --exclude '.git' --exclude '.env' \
+        -e "ssh -o StrictHostKeyChecking=no -i key.pem" ./ \
+        ubuntu@ec2-54-79-197-251.ap-southeast-2.compute.amazonaws.com:~/3YP_RW_robot_interface
+
+    - name: Build on EC2
+      run: |
+        ssh -o StrictHostKeyChecking=no -i key.pem ubuntu@ec2-54-79-197-251.ap-southeast-2.compute.amazonaws.com \
+        "cd ~/3YP_RW_robot_interface && sudo npm install && sudo npm run build"
