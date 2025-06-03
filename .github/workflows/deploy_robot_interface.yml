@@ -14,7 +14,7 @@ jobs:
 
     - name: Setup SSH key
       run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" > key.pem
+        echo "${{ secrets.ROBOT_INTERFACE_KEY }}" > key.pem
         chmod 600 key.pem
 
     - name: Rsync code to EC2
