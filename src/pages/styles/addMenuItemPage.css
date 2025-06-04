@@ -3,7 +3,6 @@
     grid-template-columns: 2fr 1fr;
     gap: 2rem;
     padding: 2rem;
-    background-color: #fefefe;
     min-height: 100vh;
   }
   

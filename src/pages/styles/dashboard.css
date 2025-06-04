@@ -1,13 +1,13 @@
 .dashboard-container {
     padding: 2rem;
-    background-color: #f9f9f9;
     min-height: 100vh;
   }
   
   .dashboard-container h1 {
     text-align: center;
-    color: #333;
+    color: #000000;
     margin-bottom: 2rem;
+    text-shadow: 2px 2px 8px #fff;
   }
   
   .dashboard-grid {
@@ -124,4 +124,4 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  
+

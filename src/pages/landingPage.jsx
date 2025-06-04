@@ -17,19 +17,19 @@ const LandingPage = () => {
       </div>
       <div className="role-selection">
         <RoleCard
-          image={adminImg}
+          image="https://img.icons8.com/?size=160&id=115346&format=png"
           title="Restaurant Login"
           description="Manage restaurant, employees, and robots"
           onClick={() => navigate('/restaurant-login')}
         />
         <RoleCard
-          image={employeeImg}
+          image="https://img.icons8.com/?size=96&id=23347&format=png"
           title="Employee Login"
           description="Assist restaurant operations and customer service"
           onClick={() => window.location.href = import.meta.env.VITE_EMPLOYEE_APP_URL}
         />
         <RoleCard
-          image={robotImg}
+          image="https://img.icons8.com/?size=128&id=b2rw9AoJdaQb&format=png"
           title="Robot Login"
           description="Serve customers with menu and ordering"
           onClick={() => navigate('/robot-login')}
