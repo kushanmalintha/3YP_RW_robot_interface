@@ -41,6 +41,7 @@ const EmployeeSignupForm = () => {
   };
 
   return (
+    <div className="signup-page">
     <form className="signup-form" onSubmit={handleSubmit}>
       <h2>Employee Signup</h2>
       <input name="name" placeholder="Full Name" value={formData.name} onChange={handleChange} required />
@@ -54,6 +55,7 @@ const EmployeeSignupForm = () => {
       {status.error && <p className="error">{status.error}</p>}
       {status.success && <p className="success">{status.success}</p>}
     </form>
+    </div>
   );
 };
 
