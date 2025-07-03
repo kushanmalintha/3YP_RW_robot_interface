@@ -3,8 +3,9 @@
     text-align: center;
   }
   
-  .restaurant-menu h2 {
-    margin-bottom: 1rem;
-    color: #333;
-  }
+.restaurant-menu h2 {
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 2px 2px 4px black;
+}
   

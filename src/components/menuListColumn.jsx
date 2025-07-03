@@ -7,9 +7,18 @@ const MenuListColumn = () => {
   const restaurantId = localStorage.getItem('restaurantId');
 
   const fetchMenu = async () => {
+    const restaurantToken = localStorage.getItem('restaurantToken');
+    if (!restaurantToken) {
+      console.error("No token found. Please log in.");
+      return;
+    }
     try {
       // Fetching the menu data from the backend
-      const res = await api.get(`/api/restaurant/${restaurantId}/menu`);
+      const res = await api.get(`/api/restaurant/${restaurantId}/menu`,{
+        headers: {
+          'Authorization': `Bearer ${restaurantToken}`
+        },
+      });
 
       // Grouping the menu data by category
       const grouped = res.data.menu.reduce((acc, item) => {
@@ -30,8 +39,17 @@ const MenuListColumn = () => {
 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this menu item?')) return;
+    const restaurantToken = localStorage.getItem('restaurantToken');
+    if (!restaurantToken) {
+      console.error("No token found. Please log in.");
+      return;
+    }
     try {
-      await api.delete(`/api/restaurant/${restaurantId}/menu/${id}`);  // Use item id for deletion
+      await api.delete(`/api/restaurant/${restaurantId}/menu/${id}`, {
+        headers: {
+          'Authorization': `Bearer ${restaurantToken}`
+        },
+      });  // Use item id for deletion
       fetchMenu(); // Refresh the menu after deletion
     } catch (err) {
       console.error('Error deleting menu item:', err);

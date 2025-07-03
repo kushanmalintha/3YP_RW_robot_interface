@@ -11,7 +11,7 @@ const RestaurantMenu = () => {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const res = await api.get(`/api/restaurant/${restaurantId}/menu`);
+        const res = await api.get(`/api/restaurant/${restaurantId}/menuRobot`);
         console.log('Menu data:', res.data.menu);
         const grouped = res.data.menu.reduce((acc, item) => {
           if (!acc[item.category]) acc[item.category] = [];

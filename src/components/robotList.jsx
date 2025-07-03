@@ -5,9 +5,17 @@ const RobotList = ({ robots, onAdd, restaurantId }) => {
   const [selectedRobot, setSelectedRobot] = useState(null);
 
   const handleRobotClick = async (robotName) => {
+    const restaurantToken = localStorage.getItem('restaurantToken');
+    if(!restaurantToken) {
+      console.error("No token found. Please log in.");
+    }
     try {
+
       // Use query parameters to match your backend
       const res = await api.get(`/api/robot/credentials`, {
+        headers: {
+          'Authorization': `Bearer ${restaurantToken}`
+        },
         params: { robotName, restaurantId }
       });
 

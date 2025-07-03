@@ -14,8 +14,17 @@ const RestaurantDashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      const restaurantToken = localStorage.getItem('restaurantToken');
+      if (!restaurantToken) {
+        console.error("No token found. Please log in.");
+        return;
+      }
       try {
-        const res = await api.get(`/api/restaurant/${restaurantId}/entities`);
+        const res = await api.get(`/api/restaurant/${restaurantId}/entities`, {
+          headers: {
+            'Authorization': `Bearer ${restaurantToken}`
+          },
+        });
         setEmployees(res.data.employees);
         setRobots(res.data.robots);
       } catch (err) {

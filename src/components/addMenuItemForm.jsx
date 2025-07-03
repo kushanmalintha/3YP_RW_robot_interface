@@ -23,13 +23,25 @@ const AddMenuItemForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const restaurantToken = localStorage.getItem('restaurantToken');
+    if (!restaurantToken) {
+      console.error("No token found. Please log in.");
+    }
+
     if (!restaurantId) {
       alert('Restaurant ID not found.');
       return;
     }
 
     try {
-      await api.post(`/api/restaurant/${restaurantId}/add-menu`, { ...formData, restaurantId });
+      await api.post(`/api/restaurant/${restaurantId}/add-menu`,
+        { ...formData, restaurantId },
+        {
+          headers: {
+            'Authorization': `Bearer ${restaurantToken}`
+          },
+        }
+      );
 
       alert('Menu item added!');
       setFormData({
