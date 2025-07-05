@@ -5,6 +5,10 @@
   padding: 1rem;
 }
 
+h3 {
+  margin-bottom: 1rem;
+}
+
 .back-button {
   margin-bottom: 1rem;
   background: #8e6cef;
