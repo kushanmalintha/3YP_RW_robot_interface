@@ -70,7 +70,7 @@ const AddMenuItemForm = () => {
       </label>
       <label>
         Includings:
-        <textarea name="Includings" value={formData.Includings} onChange={handleChange} required />
+        <input name="Includings" value={formData.Includings} onChange={handleChange} required />
       </label>
       <label>
         Price:

@@ -1,58 +1,95 @@
 .menu-list {
-    overflow-y: auto;
-    max-height: 80vh;
-    padding: 1rem;
-  }
-  
-  .menu-category {
-    margin-bottom: 1.5rem;
-  }
-  
-  .menu-category h3 {
-    background-color: #8e6ce4;
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
-  }
-  
-  .menu-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: #f9f9f9;
-    border: 1px solid #ddd;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-top: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .menu-item:hover {
-    background-color: #e3d8ff;
-  }
-  
-  .menu-item img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  
-  .menu-item-info {
-    flex: 1;
-  }
-  
-  .menu-item-info strong {
-    font-size: 1.2rem;
-    color: #333;
-  }
-  
-  .menu-item-info p {
-    margin: 0.5rem 0;
-  }
-  
-  .menu-item-info p strong {
-    color: #555;
-  }
-  
+  overflow-y: auto;
+  max-height: 80vh;
+  padding: 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Category Heading */
+.menu-category {
+  margin-bottom: 2rem;
+}
+
+.menu-category h3 {
+  background: linear-gradient(135deg, #a78bfa, #8e6ce4);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(142, 108, 228, 0.3);
+}
+
+/* Menu Item Card */
+.menu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 0.8rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.menu-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(142, 108, 228, 0.2);
+  background-color: #f4f1ff;
+}
+
+/* Image Styling */
+.menu-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+  border: 1px solid #ccc;
+}
+
+/* Info Block */
+.menu-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.menu-item-info strong {
+  font-size: 1.2rem;
+  color: #333;
+}
+
+.menu-item-info p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Add subtle label styling for menu number and price */
+.menu-item-info p strong {
+  font-weight: 600;
+  color: #444;
+}
+
+/* Tooltip on hover for delete info */
+.menu-item[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 0.3rem 0.6rem;
+  border-radius: 5px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0.95;
+  transform: translateY(-4px);
+}

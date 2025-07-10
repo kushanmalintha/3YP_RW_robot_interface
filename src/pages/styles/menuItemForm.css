@@ -1,52 +1,64 @@
-.menu-page {
-    padding: 2rem;
-    background: #fefefe;
-    min-height: 100vh;
-  }
-  
-  .menu-page h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .menu-item-form {
-    max-width: 500px;
-    margin: 0 auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-  
-  .menu-item-form label {
-    display: block;
-    margin-bottom: 1rem;
-    font-weight: bold;
-  }
-  
-  .menu-item-form input,
-  .menu-item-form textarea {
-    width: 100%;
-    padding: 0.6rem;
-    margin-top: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 1rem;
-  }
-  
-  .menu-item-form button {
-    width: 100%;
-    padding: 0.8rem;
-    background-color: #8e6ce4;
-    color: white;
-    font-weight: bold;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .menu-item-form button:hover {
-    background-color: #8e6ce4cc;
-  }
-  
+.menu-item-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  transition: box-shadow 0.3s ease;
+}
+
+.menu-item-form:hover {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.menu-item-form label {
+  display: block;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  color: #444;
+  font-size: 1rem;
+}
+
+.menu-item-form input {
+  width: 100%;
+  padding: 0.3rem 1rem;
+  margin-top: 0.4rem;
+  border: 1px solid #5a5a5a;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background-color: #fdfdfd;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.menu-item-form input:focus,
+.menu-item-form textarea:focus {
+  outline: none;
+  border-color: #8e6ce4;
+  box-shadow: 0 0 0 3px rgba(142, 108, 228, 0.2);
+}
+
+.menu-item-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.menu-item-form button {
+  width: 100%;
+  padding: 0.9rem;
+  background: #8e6ce4;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.menu-item-form button:hover {
+  background: rgba(255, 107, 107, 1);
+  transform: translateY(-2px);
+}
