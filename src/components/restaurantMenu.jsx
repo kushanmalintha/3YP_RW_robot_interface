@@ -8,30 +8,31 @@ const RestaurantMenu = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const restaurantId = localStorage.getItem('restaurantId');
 
-  useEffect(() => {
-    const fetchMenu = async () => {
-      try {
-        const res = await api.get(`/api/restaurant/${restaurantId}/menuRobot`);
-        console.log('Menu data:', res.data.menu);
-        const grouped = res.data.menu.reduce((acc, item) => {
-          if (!acc[item.category]) acc[item.category] = [];
-          acc[item.category].push({
-            name: item.name,
-            includes: typeof item.Includings === 'string'
-              ? item.Includings.split(',').map(i => i.trim())
-              : [],
-            image: item.imageUrl,
-            price: item.price,
-            menuNumber: item.menuNumber,
-          });          
-          return acc;          
-        }, {});
-        setMenuData(grouped);
-      } catch (err) {
-        console.error('Failed to fetch menu:', err);
-      }
-    };
+  // Move fetchMenu outside useEffect so it can be called elsewhere
+  const fetchMenu = async () => {
+    try {
+      const res = await api.get(`/api/restaurant/${restaurantId}/menuRobot`);
+      console.log('Menu data:', res.data.menu);
+      const grouped = res.data.menu.reduce((acc, item) => {
+        if (!acc[item.category]) acc[item.category] = [];
+        acc[item.category].push({
+          name: item.name,
+          includes: typeof item.Includings === 'string'
+            ? item.Includings.split(',').map(i => i.trim())
+            : [],
+          image: item.imageUrl,
+          price: item.price,
+          menuNumber: item.menuNumber,
+        });
+        return acc;
+      }, {});
+      setMenuData(grouped);
+    } catch (err) {
+      console.error('Failed to fetch menu:', err);
+    }
+  };
 
+  useEffect(() => {
     fetchMenu();
   }, [restaurantId]);
 
@@ -41,7 +42,10 @@ const RestaurantMenu = () => {
       {!selectedCategory ? (
         <MenuCategoryList
           categories={Object.keys(menuData)}
-          onSelectCategory={setSelectedCategory}
+          onSelectCategory={async (cat) => {
+            await fetchMenu();
+            setSelectedCategory(cat);
+          }}
         />
       ) : (
         <MenuItemList

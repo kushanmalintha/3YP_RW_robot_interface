@@ -20,10 +20,10 @@
     font-size: 2rem;
     font-weight: bold;
     color: #ffffff;
-    margin-bottom: 28px;
     letter-spacing: 1px;
     text-shadow: 0 2px 8px #000000;
     margin-bottom: 2rem;
+    padding-left: 2rem;
   }
   
   .role-selection {
@@ -34,11 +34,11 @@
   }
 
   .blur-box {
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(8px);
     border-radius: 20px;
     padding: 2rem 3rem;
-    display: inline-block;
+    /* display: inline-block; */
     margin-bottom: 2rem;
     box-shadow: 0 4px 24px rgba(0,0,0,0.2);
   }

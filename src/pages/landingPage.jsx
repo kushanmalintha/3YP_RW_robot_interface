@@ -12,8 +12,24 @@ const LandingPage = () => {
   return (
     <div className="landing-container">
       <div className="blur-box">
-        <h1 className="landing-title">Welcome to Smart Restaurant System</h1>
-        <p className="landing-subtitle">Choose how you'd like to continue</p>
+        <div className="blur-box-inner">
+          <div className="title-wrapper">
+            <h1 className="landing-title">
+              <span className="title-highlight">Smart Restaurant</span>
+              <span className="title-accent">System</span>
+            </h1>
+            <div className="title-underline"></div>
+          </div>
+          <p className="landing-subtitle">
+            Choose how you'd like to continue
+          </p>
+          <div className="floating-elements">
+            <div className="floating-dot dot-1"></div>
+            <div className="floating-dot dot-2"></div>
+            <div className="floating-dot dot-3"></div>
+          </div>
+        </div>
+        <div className="blur-box-glow"></div>
       </div>
       <div className="role-selection">
         <RoleCard

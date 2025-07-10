@@ -53,7 +53,7 @@ const EmployeeSignupForm = () => {
       </button>
 
       {status.error && <p className="error">{status.error}</p>}
-      {status.success && <p className="success">{status.success}</p>}
+      {/* {status.success && <p className="success">{status.success}</p>} */}
     </form>
     </div>
   );

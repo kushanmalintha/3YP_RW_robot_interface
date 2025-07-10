@@ -5,19 +5,19 @@ import api from '../api/api';
 const RobotSignupForm = () => {
   const [robotName, setRobotName] = useState('');
   const [message, setMessage] = useState({ error: '', success: '' });
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+    setIsLoading(true);
     const restaurantId = localStorage.getItem('restaurantId');
-  
     if (!robotName || !restaurantId) {
       alert('Robot name and restaurant ID are required.');
+      setIsLoading(false);
       return;
     }
-  
     try {
       const res = await api.post('/api/robot/signup', { robotName, restaurantId });
       if (res.status === 409) {
@@ -38,8 +38,10 @@ const RobotSignupForm = () => {
         alert('Error occurred during signup.');
         console.error(err);
       }
+    } finally {
+      setIsLoading(false);
     }
-  };  
+  };
 
   return (
     <div className="signup-page">
@@ -54,10 +56,10 @@ const RobotSignupForm = () => {
           required
         />
 
-        <button type="submit">Register Robot</button>
+        <button type="submit" disabled={isLoading}>{isLoading ? 'Registering...' : 'Register Robot'}</button>
 
         {message.error && <p className="error">{message.error}</p>}
-        {message.success && <p className="success">{message.success}</p>}
+        {/* {message.success && <p className="success">{message.success}</p>} */}
       </form>
     </div>
   );
